@@ -1,0 +1,5 @@
+.ai-deletion-backups/
+.agents/
+main.js.backup
+main_test.js
+.DS_Store
