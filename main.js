@@ -164,10 +164,21 @@ const hideTaskbarIcons = () => {
       app.removeListener("activate", onActivateRef);
       onActivateRef = undefined;
     }
+  },
+  setDockQuickNoteMenu = () => {
+    if (process.platform !== "darwin") return;
+    const dockMenu = Menu.buildFromTemplate([
+      { label: ACTION_QUICK_NOTE, click: addQuickNote },
+    ]);
+    app.dock.setMenu(dockMenu);
+  },
+  clearDockMenu = () => {
+    if (process.platform === "darwin") app.dock.setMenu(null);
   };
 const cleanup = () => {
     log(LOG_CLEANUP);
     try { unregisterHotkeys(); } catch {}
+    try { clearDockMenu(); } catch {}
     try { unregisterDockActivate(); } catch {}
     try { showTaskbarIcons(); } catch {}
     try { allowWindowClose(); } catch {}
@@ -526,6 +537,7 @@ class TrayPlugin extends obsidian.Plugin {
     const { settings } = this;
 
     plugin = this;
+    setDockQuickNoteMenu();
     createTrayIcon();
     registerHotkeys();
     setLaunchOnStartup();
