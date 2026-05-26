@@ -439,10 +439,11 @@ const keyToLabel = (key) => {
     };
     return labels[key] ?? key;
   },
-  htmlToFragment = (html) =>
-    document
-      .createRange()
-      .createContextualFragment((html ?? "").replace(/\s+/g, " "));
+  htmlToFragment = (html) => {
+    const template = document.createElement("template");
+    template.innerHTML = (html ?? "").replace(/\s+/g, " ");
+    return template.content.cloneNode(true);
+  };
 
 class SettingsTab extends obsidian.PluginSettingTab {
   display() {

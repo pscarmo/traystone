@@ -2,7 +2,7 @@
   "id": "traystone",
   "name": "Traystone",
   "author": "Tins",
-  "description": "将 Obsidian 运行到系统托盘，支持自定义窗口管理和全局快速笔记",
+  "description": "Run the app in the system tray with custom window management and global quick notes.",
   "version": "1.0.0",
   "isDesktopOnly": true,
   "minAppVersion": "1.0.0"
