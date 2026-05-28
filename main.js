@@ -440,9 +440,7 @@ const keyToLabel = (key) => {
     return labels[key] ?? key;
   },
   htmlToFragment = (html) => {
-    const template = document.createElement("template");
-    template.innerHTML = (html ?? "").replace(/\s+/g, " ");
-    return template.content.cloneNode(true);
+    return document.createRange().createContextualFragment((html ?? "").replace(/\s+/g, " "));
   };
 
 class SettingsTab extends obsidian.PluginSettingTab {
